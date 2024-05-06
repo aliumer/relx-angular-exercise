@@ -1,0 +1,20 @@
+{
+  "/company": {
+    "target": "https://angular-exercise.trunarrative.cloud/TruProxyAPI/rest/Companies/v1/Search",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/company": ""
+    }
+  },
+  "/officers": {
+    "target": "https://angular-exercise.trunarrative.cloud/TruProxyAPI/rest/Companies/v1/Officers",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/officers": ""
+    }
+  }
+}

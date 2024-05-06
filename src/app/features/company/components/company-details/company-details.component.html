@@ -1,0 +1,25 @@
+<div *ngIf="errorMessage">
+  <span class="alert alert-danger">{{errorMessage}}</span>
+</div>
+
+<div *ngIf="$data | async as company">
+  <h3>{{ company.items[0].title }}</h3>
+
+  <dl>
+    <dt>Company Number</dt>
+    <dd>{{ company.items[0].company_number }}</dd>
+    <dt>Registered Office Address</dt>
+    <dd>{{ company.items[0].address_snippet }}</dd>
+    <dt>Company Status</dt>
+    <dd>{{ company.items[0].company_status }}</dd>
+    <dt>Company type</dt>
+    <dd>{{ company.items[0].company_type }}</dd>
+    <dt>incorporated on</dt>
+    <dd>{{ company.items[0].date_of_creation | date : "dd MMMM yyyy" }}</dd>
+  </dl>
+  <div>
+    <a [routerLink]="['/officers', company.items[0].company_number]"
+      >List Officers</a
+    >
+  </div>
+</div>

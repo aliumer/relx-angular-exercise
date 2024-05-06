@@ -1,0 +1,21 @@
+<ul class="pagination">
+  <li (click)="first()" class="page-item">
+    <span class="page-link">First</span>
+  </li>
+  <li (click)="next()" class="page-item">
+    <span class="page-link">Next</span>
+  </li>
+  <li
+    *ngFor="let page of pages"
+    [ngClass]="{ 'page-item': true, active: currentPage === page }"
+    (click)="changePage.emit(page)"
+  >
+    <span class="page-link">{{ page }}</span>
+  </li>
+  <li (click)="previous()" class="page-item">
+    <span class="page-link">Previous</span>
+  </li>
+  <li (click)="last()" class="page-item">
+    <span class="page-link">Last</span>
+  </li>
+</ul>

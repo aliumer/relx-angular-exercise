@@ -1,0 +1,9 @@
+dt {
+  font-weight: normal;
+}
+dd {
+  font-weight: bold;
+  margin: 0;
+  padding: 0 0 0.5em 0;
+  margin-bottom: 20px;
+}

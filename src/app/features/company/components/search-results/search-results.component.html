@@ -1,0 +1,21 @@
+<div *ngIf="companies">
+  <h4>SEARCH RESULTS</h4>
+  <div *ngFor="let c of companies">
+    <div>
+      <a [routerLink]="['/details', c.company_number]">{{ c.title }}</a>
+    </div>
+    <div>
+      <strong>{{ c.company_number }}</strong> - incorporated on
+      {{ c.date_of_creation | date : "dd MMMM yyyy" }}
+    </div>
+    <div class="address">
+      {{ c.address_snippet }}
+    </div>
+  </div>
+  <app-pagination
+    [currentPage]="currentPage"
+    [limit]="limit"
+    [total]="total"
+    (changePage)="changePage($event)"
+  ></app-pagination>
+</div>

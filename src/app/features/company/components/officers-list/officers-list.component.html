@@ -1,0 +1,21 @@
+<div *ngIf="errorMessage">
+  <span class="alert alert-danger">{{errorMessage}}</span>
+</div>
+
+<div *ngIf="$company | async as company">
+  <h4>{{ company.items[0].title }} - Officers</h4>
+  <div>
+    <span>Company Number</span>&nbsp;<strong>{{
+      company.items[0].company_number
+    }}</strong>
+  </div>
+
+  <div *ngIf="$officers | async as officers">
+    <div *ngFor="let o of officers.items">
+      <dl>
+        <dt>{{ o.name }}</dt>
+        <dd>{{ o.officer_role }}</dd>
+      </dl>
+    </div>
+  </div>
+</div>

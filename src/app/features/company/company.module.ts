@@ -4,7 +4,7 @@ import { SearchPageComponent } from './components/search-page/search-page.compon
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { CompanyDetailsComponent } from './components/company-details/company-details.component';
 import { OfficersListComponent } from './components/officers-list/officers-list.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { PaginationModule } from '../pagination/pagination.module';
 
@@ -15,6 +15,12 @@ import { PaginationModule } from '../pagination/pagination.module';
     CompanyDetailsComponent,
     OfficersListComponent,
   ],
-  imports: [CommonModule, FormsModule, RouterModule, PaginationModule],
+  imports: [
+    CommonModule, 
+    ReactiveFormsModule, 
+    FormsModule, 
+    RouterModule, 
+    PaginationModule
+  ],
 })
 export class CompanyModule {}

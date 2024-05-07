@@ -1,40 +1,22 @@
-<div>
+<div *ngIf="!!errorMessage" class="alert alert-danger">
+  {{errorMessage}}
+</div>
+
+<form [formGroup]="searchForm" role="form" (ngSubmit)="onSubmit()">
   <div class="form-group">
-    <div *ngIf="errorMessage">
-      <span class="alert alert-danger">{{errorMessage}}</span>
-    </div>
-    <div>
-      <label for="searchbox" class="col-sm-4 col-form-label">
-        Company Name:
-      </label>
-      <div class="col-sm-6">
-        <input
-          class="form-control"
-          type="text"
-          id="searchbox"
-          name="searchbox"
-          placeholder="Company Name or Number"
-          required
-          [(ngModel)]="searchTerms"
-          #searchbox="ngModel"
-        />
-        <div
-          *ngIf="
-            searchbox.invalid &&
-            (searchbox.dirty || searchbox.touched || searchbox.value === '')
-          "
-          class="alert alert-danger"
-        >
-          <div *ngIf="searchbox.errors?.['required']">
-            search term is required
-          </div>
-        </div>
-      </div>
+    <label class="col-sm-3 col-form-label">Company Name or Number:</label>
+    <input formControlName="search" class="form-control" placeholder="Company Name or Number:" class="form-control"
+      [ngClass]="{ 'is-invalid': isSubmitted && searchForm.get('search')?.errors }" />
+    <div *ngIf="isSubmitted && searchForm.get('search')?.errors" class="invalid-feedback">
+      <div *ngIf="searchForm.get('search')?.hasError('required')">Search term is required</div>
     </div>
   </div>
-  <div>
-    <button class="col-sm-1 btn btn-primary btn-md" (click)="search()">Search</button>
+  <div class="btnSubmit">
+    <button type="submit" class="btn btn-primary">Search</button>
   </div>
+</form>
+
+<div>
   <div *ngIf="$data | async as data">
     <app-search-results [companyItems]="data.items"></app-search-results>
   </div>

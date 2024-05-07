@@ -27,6 +27,7 @@ export class SearchPageComponent implements OnInit {
   }
 
   onSubmit() {
+    this.$data = EMPTY;
     this.errorMessage = '';
     this.isSubmitted = true;
     if (this.searchForm.invalid) return;

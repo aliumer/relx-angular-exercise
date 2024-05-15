@@ -1,13 +1,16 @@
-<form [formGroup]="searchForm" role="form" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <label class="col-sm-3 col-form-label">Company Name or Number:</label>
-    <input formControlName="search" class="form-control" placeholder="Company Name or Number:" class="form-control"
-      [ngClass]="{ 'is-invalid': isSubmitted && searchForm.get('search')?.errors }" />
-    <div *ngIf="isSubmitted && searchForm.get('search')?.errors" class="invalid-feedback">
-      <div *ngIf="searchForm.get('search')?.hasError('required')">Search term is required</div>
+<div class="row align-items-center vh-100">
+  <form [formGroup]="searchForm" role="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label class="col-sm-3 col-form-label">Company Name or Number:</label>
+      <input formControlName="search" class="form-control" placeholder="Company Name or Number:" class="form-control"
+        [ngClass]="{ 'is-invalid': isSubmitted && searchForm.get('search')?.errors }" />
+      <div *ngIf="isSubmitted && searchForm.get('search')?.errors" class="invalid-feedback">
+        <div *ngIf="searchForm.get('search')?.hasError('required')">Search term is required</div>
+      </div>
     </div>
-  </div>
-  <div class="btnSubmit">
-    <button type="submit" class="btn btn-primary">Search</button>
-  </div>
-</form>
+    <div class="btnSubmit">
+      <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+  </form>
+  
+</div>

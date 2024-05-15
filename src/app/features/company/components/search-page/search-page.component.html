@@ -1,7 +1,3 @@
-<div *ngIf="!!errorMessage" class="alert alert-danger">
-  {{errorMessage}}
-</div>
-
 <form [formGroup]="searchForm" role="form" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <label class="col-sm-3 col-form-label">Company Name or Number:</label>
@@ -15,9 +11,3 @@
     <button type="submit" class="btn btn-primary">Search</button>
   </div>
 </form>
-
-<div>
-  <div *ngIf="$data | async as data">
-    <app-search-results [companyItems]="data.items"></app-search-results>
-  </div>
-</div>

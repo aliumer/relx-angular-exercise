@@ -1,6 +1,10 @@
-<div *ngIf="companies">
+<div *ngIf="!!errorMessage" class="alert alert-danger">
+  {{errorMessage}}
+</div>
+
+<div *ngIf="$data | async as data">
   <h4>SEARCH RESULTS</h4>
-  <div *ngFor="let c of companies">
+  <div *ngFor="let c of companySlices">
     <div>
       <a [routerLink]="['/details', c.company_number]">{{ c.title }}</a>
     </div>

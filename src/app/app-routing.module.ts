@@ -5,6 +5,7 @@ import { CompanyDetailsComponent } from './features/company/components/company-d
 import { OfficersListComponent } from './features/company/components/officers-list/officers-list.component';
 import { LoginComponent } from './features/authentication/login/login.component';
 import { AuthGuard } from './features/authentication/auth.guard';
+import { SearchResultsComponent } from './features/company/components/search-results/search-results.component';
 
 const routes: Routes = [
   { path: '', component: SearchPageComponent },
@@ -13,6 +14,7 @@ const routes: Routes = [
     component: CompanyDetailsComponent,
     canActivate: [AuthGuard],
   },
+  { path: 'company/:id', component: SearchResultsComponent },
   { path: 'officers/:id', component: OfficersListComponent },
   { path: 'login', component: LoginComponent },
 ];

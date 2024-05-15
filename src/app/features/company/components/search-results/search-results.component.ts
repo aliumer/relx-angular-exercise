@@ -5,33 +5,49 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import { CompanyItem } from 'src/app/core/models/company.model';
+import { ActivatedRoute } from '@angular/router';
+import { EMPTY, Observable, catchError, map } from 'rxjs';
+import { Company, CompanyItem } from 'src/app/core/models/company.model';
+import { SearchCompanyService } from 'src/app/core/services/search-company.service';
 
 @Component({
   selector: 'app-search-results',
   templateUrl: './search-results.component.html',
   styleUrls: ['./search-results.component.css'],
 })
-export class SearchResultsComponent implements OnChanges {
-  @Input() companyItems!: CompanyItem[];
-
-  companies!: CompanyItem[];
+export class SearchResultsComponent implements OnInit {
+  
+  errorMessage!: string;
+  $data!: Observable<Company>;
+  companyItems!: CompanyItem[];
+  companySlices!: CompanyItem[];
   currentPage: number = 1;
   limit: number = 5;
   total!: number;
 
-  constructor() {}
+  constructor(private route: ActivatedRoute, 
+              private searchService: SearchCompanyService
+  ) {}
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (this.companyItems && this.companyItems.length > 0) {
-      this.total = this.companyItems.length;
-      this.changePage(1);
-    }
+  ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id') as string;
+    this.$data = this.searchService.searchCompany(id).pipe(
+      map(data => {
+        this.companyItems = data.items;
+        this.total = data.items.length;
+        this.changePage(1);
+        return data;
+      }),
+      catchError((err) => {
+        this.errorMessage = `Error occured while accessing ${err.url}, Status: ${err.status}, Status Text: ${err.statusText}`;
+        return EMPTY;
+      })
+    )
   }
 
   changePage(page: number) {
     this.currentPage = page;
-    this.companies =
+    this.companySlices =
       this.companyItems && this.companyItems.length > 0
         ? this.companyItems.slice(
             (this.currentPage - 1) * this.limit,
